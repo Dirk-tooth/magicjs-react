@@ -1,25 +1,110 @@
-import logo from './logo.svg';
+import React from 'react';
+
+// React Components
+import Nav from './nav/nav.js';
+import Players from './tools/player.js';
+import Search from './search/search.js';
+import Plane from './planechase/planechase.js';
+import About from './about/about.js';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// Modules
+import { requestLayout } from './utility/requests.js';
 
-export default App;
+const request = requestLayout('plane');
+
+export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      currentPage: 'tools',
+      planechase: {
+        planes: '',
+        currentPlaneImage: 'images/default.png',
+        currentPlaneName: 'Welcome to magicJS',
+        currentPlaneOracle: 'Click the card to the left to planeswalk.',
+        currentPlaneChaos: 'There are other worlds than these.',
+      },
+      search: {
+        searchBy: 'name',
+        searchText: '',
+        searchCards: [],
+        matchAll: [],
+        matchAny: [],
+        exclude: [],
+        cmc: [],
+      },
+      players: {
+        1: {
+          id: 1,
+          name: 'Player 1',
+          life: 20,
+          counters: {},
+        },
+        2: {
+          id: 2,
+          name: 'Player 2',
+          life: 20,
+          counters: {},
+        },
+      },
+    };
+    request.then((response) => {
+      this.state.planechase.planes = response.cards;
+    });
+  }
+  changeTopLevelState(key, value) {
+    this.setState({ [key]: value });
+  }
+  render() {
+    const views = {
+      plane: (
+        <Plane
+          changeTopLevelState={(key, value) =>
+            this.changeTopLevelState(key, value)
+          }
+          planechase={this.state.planechase}
+        />
+      ),
+      search: (
+        <Search
+          changeTopLevelState={(key, value) =>
+            this.changeTopLevelState(key, value)
+          }
+          search={this.state.search}
+        />
+      ),
+      tools: (
+        <div className='game'>
+          <div className='game-bottom'>
+            <Plane
+              changeTopLevelState={(key, value) =>
+                this.changeTopLevelState(key, value)
+              }
+              planechase={this.state.planechase}
+            />
+          </div>
+          {/* <Players
+            changeTopLevelState={(key, value) =>
+              this.changeTopLevelState(key, value)
+            }
+            players={this.state.players}
+          /> */}
+        </div>
+      ),
+      about: <About />,
+    };
+    return (
+      <div>
+        {/* <Nav
+          changeTopLevelState={(key, value) =>
+            this.changeTopLevelState(key, value)
+          }
+          views={views}
+        /> */}
+        <div>{views[this.state.currentPage]}</div>
+      </div>
+    );
+  }
+}

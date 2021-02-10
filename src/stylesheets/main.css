@@ -107,7 +107,7 @@ body {
 
 .card-info {
   padding: 15px;
-  flex-basis: 80%;
+  flex-basis: 80%
 }
 
 .card-info-row {
@@ -122,7 +122,7 @@ body {
   font-weight: bold;
 }
 
-.card-mana-cost > span {
+.card-mana-cost>span {
   font-weight: bold;
 }
 
@@ -137,11 +137,11 @@ body {
 
 /*filter styles*/
 
-.manaSymbol > img {
+.manaSymbol>img {
   width: 18px;
 }
 
-.mana-btn > img {
+.mana-btn>img {
   width: 36px;
 }
 
@@ -150,7 +150,7 @@ body {
 }
 
 .anyColorSym {
-  background-image: url('./images/anyColor.svg');
+  background-image: url('../images/anyColor.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 75%;
@@ -223,8 +223,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
 }
 
 #image-holder {
@@ -265,7 +264,7 @@ body {
   text-align: left;
 }
 
-.about > h1 {
+.about>h1 {
   font-size: 4em;
 }
 
@@ -277,13 +276,12 @@ body {
 }
 
 .pc-wrap {
-  /* width: 100%; */
-  height: 100%;
+  width: 100%
 }
 
 .game-bottom-background {
   position: absolute;
-  /* top: -50%; */
+  top: -50%;
   left: 0;
   z-index: 1;
   background: gray url(images/default.jpg) center center;
@@ -301,37 +299,32 @@ body {
   height: 100%;
 }
 
-.pc-container,
-#image-holder,
-.plane-text {
+.pc-container, #image-holder, .plane-text {
   z-index: 3;
 }
 
-.plane-text h2,
-.plane-text h4 {
+.plane-text h2, .plane-text h4 {
   margin: 0 0 1em;
-  padding: 0.5em;
-  background-color: rgba(255, 255, 255, 0.7);
+  padding: .5em;
+  background-color: rgba(255, 255, 255, .7);
   border-radius: 3px;
-  text-shadow: 1px 0 2px rgba(255, 255, 255, 0.2),
-    -1px 0 2px rgba(255, 255, 255, 0.2), 0 1px 2px rgba(255, 255, 255, 0.2),
-    0 -1px 2px rgba(255, 255, 255, 0.2);
+  text-shadow: 1px 0 2px rgba(255, 255, 255, .2), -1px 0 2px rgba(255, 255, 255, .2), 0 1px 2px rgba(255, 255, 255, .2), 0 -1px 2px rgba(255, 255, 255, .2);
 }
 
 .plane-text h2 {
-  font-weight: 800;
+  font-weight: 800
 }
 
 .plane-text h4 {
-  font-size: 175%;
+  font-size: 175%
 }
 
 input:focus {
-  outline: rgba(0, 0, 0, 0);
+  outline: rgba(0, 0, 0, 0)
 }
 
 .navbar {
-  margin-bottom: 0;
+  margin-bottom: 0
 }
 
 .game-bottom {
